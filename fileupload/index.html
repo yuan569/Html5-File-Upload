@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>File Upload</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/fileupload.css">
+</head>
+
+<body>
+    <div class="upload-container">
+        <div class="upload-title">请点击“+”按钮上传图片</div>
+        <div class="upload-image-picker">
+            <div class="upload-image-picker-list">
+                <div class="upload-flexbox">
+                    <div class="upload-flexbox-item">
+                        <div class="upload-image-picker-item upload-image-picker-upload-btn"><input type="file" accept="image/jpeg,image/jpg,image/png" multiple class="upload__input"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="upload-tip">提示：只能上传jpeg、jpg、png文件，每张图片不超过15M</div>
+    </div>
+    <script src="./js/fileupload.js" charset="utf-8"></script>
+    <script>
+    window.addEventListener("load", function(){
+        (function() {
+            var fileupload = new FileUpload({
+                compressPercent: 0.3, //压缩比例，最大为1
+                addItemApi: "", //新增图片的接口
+                deleteItemApi: "" //删除图片的接口
+            });
+        })()
+    })
+    </script>
+</body>
+
+</html>
