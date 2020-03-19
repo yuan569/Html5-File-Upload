@@ -22,10 +22,10 @@
         shallowCopy(this.options, options || {})
 
         //引用元素
-        this.uploadFlexbox = document.querySelector(".upload-flexbox");
-        this.uploadButton = document.querySelector(".upload-image-picker-upload-btn");
-        this.btnBelongToFlexItem = this.uploadButton.parentNode;
-        this.uploadInput = document.querySelector(".upload__input");
+        this.uploadFlexbox = document.querySelector(".upload-flexbox"); //图片要展示的项目容器
+        this.uploadButton = document.querySelector(".upload-image-picker-upload-btn"); //上传按钮
+        this.btnBelongToFlexItem = this.uploadButton.parentNode;  //上传按钮所在的项目节点
+        this.uploadInput = document.querySelector(".upload__input"); //input元素
         this.fragmentWrap = document.createDocumentFragment(); //文档片段容器
 
         //添加input file元素的change事件处理程序
@@ -57,7 +57,7 @@
             files = event.target.files;
             i = 0;
             len = files.length;
-            counter = 0; //计数器，记录已加载的图片
+            counter = 0; //计数器，记录每次上传后已加载成功的图片个数
             
 
             while (i < len) {
@@ -93,15 +93,15 @@
                         //点击按钮新增图片项目（插入到文档片段容器中保存）
                         self.addFragItem(compressedDataURL);
 
-                        //计数器加1
+                        //计数器自增
                         counter++
 
                         //图片全部加载完成时
                         if (counter == len) {
-                            //把文档片段插入到DOM中
+                            //把文档片段一次性插入到DOM中
                             self.uploadFlexbox.insertBefore(self.fragmentWrap, self.btnBelongToFlexItem);
 
-                            // 发送请求
+                            // 发送新增请求
                             self.sendRequest(self.options.addItemApi, uploadData)
                         }
 
@@ -118,16 +118,17 @@
             }
 
         },
-        //点击按钮新增图片项目
+        //向文档片段容器中插入图片项目的DOM结构
         addFragItem(url) {
-            //创建DOM结构，并插入到文档片段容器中
+            //创建DOM结构
             var domFrag = this.createDom(url);
+            //插入到文档片段容器中
             this.fragmentWrap.appendChild(domFrag);
         },
         //点击按钮删除图片项目
         deleteItem(target) {
             var self = this,
-                fname; //id表示图片所属的项目在列表中的位置
+                fname; //用来保存图片的文件名
 
             // 递归查找节点并删除
             var findParent = function(node) {
@@ -135,7 +136,7 @@
 
                 if (parent === self.uploadFlexbox) {
 
-                    // 取得被删除项目在列表中的位置
+                    // 取得被删除项目的图片文件名
                     fname = node.getAttribute("fname");
                     parent.removeChild(node)
                 } else {
@@ -146,11 +147,11 @@
 
             //把文件名拼接到请求地址，删除服务器中对应的图片数据
             var toBeDeletedUrl = self.options.deleteItemApi + fname
-            //发送请求
+            //发送删除请求
             self.sendRequest(toBeDeletedUrl)
 
         },
-        //点击上传按钮后创建DOM片段（参数id用来标记图片所属的项目在列表中的位置）
+        //点击上传按钮后创建图片项目的DOM片段
         createDom(url) {
             var template = '';
             template += '<div class="upload-flexbox-item">' +
@@ -215,7 +216,8 @@
 
             //为节点项目标记文件名
             fileNames.forEach(function(item, index) {
-                items.item(prevLen + index - 1).setAttribute("fname", item.fname)
+                //-1表示排除“+”按钮所在项目
+                items.item(prevLen + index - 1).setAttribute("fname", item.fname);
             })
         },
         //封装POST请求(可实现增加、刪除图片功能)
@@ -240,7 +242,6 @@
             }
             xhr.send(data)
         },
-
 
     }
 
