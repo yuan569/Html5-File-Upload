@@ -24,9 +24,10 @@
         //引用元素
         this.uploadFlexbox = document.querySelector(".upload-flexbox"); //图片要展示的项目容器
         this.uploadButton = document.querySelector(".upload-image-picker-upload-btn"); //上传按钮
-        this.btnBelongToFlexItem = this.uploadButton.parentNode;  //上传按钮所在的项目节点
+        this.btnBelongToFlexItem = this.uploadButton.parentNode; //上传按钮所在的项目节点
         this.uploadInput = document.querySelector(".upload__input"); //input元素
         this.fragmentWrap = document.createDocumentFragment(); //文档片段容器
+        this.mask = document.querySelector(".mask"); //loading遮罩层
 
         //添加input file元素的change事件处理程序
         this.uploadInput.addEventListener("change", function(event) {
@@ -58,7 +59,7 @@
             i = 0;
             len = files.length;
             counter = 0; //计数器，记录每次上传后已加载成功的图片个数
-            
+
 
             while (i < len) {
 
@@ -86,7 +87,7 @@
 
                         // 生成DataURL
                         compressedDataURL = self.compress(img, type);
-                    
+
                         //为FormData对象设置键值
                         uploadData.append(keyName, compressedDataURL);
 
@@ -102,6 +103,7 @@
                             self.uploadFlexbox.insertBefore(self.fragmentWrap, self.btnBelongToFlexItem);
 
                             // 发送新增请求
+                            self.mask.style.display = "block"
                             self.sendRequest(self.options.addItemApi, uploadData)
                         }
 
@@ -197,7 +199,6 @@
 
             //进行压缩
             var compressed = canvas.toDataURL("image/jpeg", this.options.compressPercent);
-            // console.log("*******压缩后的图片大小*******");
             return compressed;
         },
         //请求成功后，将服务器保存的图片对应的文件名记录在DOM节点上
@@ -231,13 +232,20 @@
             xhr.open("post", url, true);
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4) {
-                    var result = JSON.parse(xhr.responseText);
-                    alert(result.msg);
+                    if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
+                        self.mask.style.display = "none"
 
-                    if (result.data) {
-                        //将文件名记录在DOM节点上
-                        self.recordFileName(result.data.fileNames)
+                        var result = JSON.parse(xhr.responseText);
+                        alert(result.msg);
+
+                        if (result.data) {
+                            //将文件名记录在DOM节点上
+                            self.recordFileName(result.data.fileNames)
+                        }
+                    } else {
+                        alert("请求失败")
                     }
+
                 }
             }
             xhr.send(data)
