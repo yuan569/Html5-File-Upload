@@ -1,7 +1,7 @@
 # Html5_File_Upload
 Html5_File_Upload is a plugin which is used to upload images in mobile.
-EXAMPLES
-GETTING STARTED
+#EXAMPLES
+#GETTING STARTED
 Ready to set File_Upload up on your page? Start by including the File_Upload CSS and Javascript. You can grab both these files from the /dist folder.
 1.Include the CSS at the top of your page in your <head> tag:
 <link href="path/to/fileupload.css" rel="stylesheet" />
