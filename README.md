@@ -1,9 +1,7 @@
-# File Upload
+# File-Upload
 
 ## Preview
-
-
-
+![File-Upload](https://github.com/yuan569/Html5_File_Upload/fileupload/img/preview.jpg)
 
 
 
