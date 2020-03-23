@@ -23,7 +23,7 @@ Ready to set File_Upload up on your page? Start by including the File_Upload CSS
 <script src="path/to/fileupload.js"></script> 
 ```
 
-4. Include the Html at the top of your page after the "body" tag:
+4. Include the Html at the top of your page in your "body" tag:
 ```bash
 <div class="upload-container">
     <div class="upload-title">请点击“+”按钮上传图片</div>
