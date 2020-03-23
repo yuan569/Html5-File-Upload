@@ -11,7 +11,7 @@ Html5-File-Upload is a plugin which is used to upload images in mobile.
 
 Ready to set Html5-File-Upload up on your page? Start by including the Html5-File-Upload Css, Html and Javascript. You can grab both these files from the /dist folder. 
 
-1. Download a zip of the latest release (or any previous one) from the Github Releases page.
+1. Download a zip of the latest release from the Github Releases page.
 
 2. Include the Css at the top of your page in your "head" tag:
 ```bash
