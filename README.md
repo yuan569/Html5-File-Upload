@@ -9,11 +9,11 @@ File-Upload is a plugin which is used to upload images in mobile.
 
 ## Getting Started
 
-Ready to set File-Upload up on your page? Start by including the File-Upload CSS and Javascript. You can grab both these files from the /dist folder. 
+Ready to set File-Upload up on your page? Start by including the File-Upload Css, Html and Javascript. You can grab both these files from the /dist folder. 
 
 1. Download a zip of the latest release (or any previous one) from the Github Releases page.
 
-2. Include the CSS at the top of your page in your "head" tag:
+2. Include the Css at the top of your page in your "head" tag:
 ```bash
 <link href="path/to/fileupload.css" rel="stylesheet" />
 ```
