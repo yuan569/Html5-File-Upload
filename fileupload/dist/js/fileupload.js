@@ -27,7 +27,7 @@
         this.btnBelongToFlexItem = this.uploadButton.parentNode; //上传按钮所在的项目节点
         this.uploadInput = document.querySelector(".upload__input"); //input元素
         this.fragmentWrap = document.createDocumentFragment(); //文档片段容器
-        this.targetNode = null;
+        this.targetNode = null;//缓存点击（删除）事件的目标对象
         this.mask = document.querySelector(".mask"); //loading遮罩层
 
         //添加input file元素的change事件处理程序
