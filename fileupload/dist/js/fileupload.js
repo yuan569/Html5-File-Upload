@@ -27,6 +27,7 @@
         this.btnBelongToFlexItem = this.uploadButton.parentNode; //上传按钮所在的项目节点
         this.uploadInput = document.querySelector(".upload__input"); //input元素
         this.fragmentWrap = document.createDocumentFragment(); //文档片段容器
+        this.targetNode = null;
         this.mask = document.querySelector(".mask"); //loading遮罩层
 
         //添加input file元素的change事件处理程序
@@ -99,12 +100,10 @@
 
                         //图片全部加载完成时
                         if (counter == len) {
-                            //把文档片段一次性插入到DOM中
-                            self.uploadFlexbox.insertBefore(self.fragmentWrap, self.btnBelongToFlexItem);
 
                             // 发送新增请求
                             self.mask.style.display = "block"
-                            self.sendRequest(self.options.addItemApi, uploadData)
+                            self.sendRequest(self.options.addItemApi, "post", uploadData)
                         }
 
                         //释放引用的对象URL，减少内存占用
@@ -130,7 +129,14 @@
         //点击按钮删除图片项目
         deleteItem(target) {
             var self = this,
-                fname; //用来保存图片的文件名
+                fname,
+                toBeDeletedUrl; //用来保存图片的文件名
+
+            if(!self.options.deleteItemApi) {
+                alert("请先设置请求接口！")
+
+                return
+            }
 
             // 递归查找节点并删除
             var findParent = function(node) {
@@ -140,7 +146,7 @@
 
                     // 取得被删除项目的图片文件名
                     fname = node.getAttribute("fname");
-                    parent.removeChild(node)
+                    self.targetNode = node
                 } else {
                     findParent(parent)
                 }
@@ -148,9 +154,10 @@
             findParent(target);
 
             //把文件名拼接到请求地址，删除服务器中对应的图片数据
-            var toBeDeletedUrl = self.options.deleteItemApi + fname
+            toBeDeletedUrl = self.options.deleteItemApi + fname
+
             //发送删除请求
-            self.sendRequest(toBeDeletedUrl)
+            self.sendRequest(toBeDeletedUrl, "post")
 
         },
         //点击上传按钮后创建图片项目的DOM片段
@@ -222,14 +229,19 @@
             })
         },
         //封装POST请求(可实现增加、刪除图片功能)
-        sendRequest: function(url, data = null) {
+        sendRequest: function(url, method, data) {
+            var self = this;
             if (!url) {
+                self.mask.style.display = "none"
                 alert("请先设置请求接口！")
                 return
             }
-            var self = this;
+            if(!data) {
+                data = null
+            }
+
             var xhr = new XMLHttpRequest();
-            xhr.open("post", url, true);
+            xhr.open(method, url, true);
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4) {
                     if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
@@ -239,8 +251,15 @@
                         alert(result.msg);
 
                         if (result.data) {
+                            //添加图片请求成功，把文档片段一次性插入到DOM中
+                            self.uploadFlexbox.insertBefore(self.fragmentWrap, self.btnBelongToFlexItem);
+
                             //将文件名记录在DOM节点上
                             self.recordFileName(result.data.fileNames)
+                        } else {
+                            //删除图片请求处理成功，删除对应的DOM
+                            var parent = self.targetNode.parentNode
+                            parent.removeChild(self.targetNode)
                         }
                     } else {
                         alert("请求失败")
