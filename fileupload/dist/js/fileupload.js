@@ -27,7 +27,7 @@
         this.btnBelongToFlexItem = this.uploadButton.parentNode; //上传按钮所在的项目节点
         this.uploadInput = document.querySelector(".upload__input"); //input元素
         this.fragmentWrap = document.createDocumentFragment(); //文档片段容器
-        this.targetNode = null;//缓存点击（删除）事件的目标对象
+        this.targetNodeBelongToItem = null; //缓存点击（删除）事件的目标对象所属的节点项目
         this.mask = document.querySelector(".mask"); //loading遮罩层
 
         //添加input file元素的change事件处理程序
@@ -100,7 +100,6 @@
 
                         //图片全部加载完成时
                         if (counter == len) {
-
                             // 发送新增请求
                             self.mask.style.display = "block"
                             self.sendRequest(self.options.addItemApi, "post", uploadData)
@@ -132,13 +131,13 @@
                 fname,
                 toBeDeletedUrl; //用来保存图片的文件名
 
-            if(!self.options.deleteItemApi) {
+            if (!self.options.deleteItemApi) {
                 alert("请先设置请求接口！")
 
                 return
             }
 
-            // 递归查找节点并删除
+            // 递归查找事件目标对象所属的项目节点
             var findParent = function(node) {
                 var parent = node.parentNode;
 
@@ -146,7 +145,8 @@
 
                     // 取得被删除项目的图片文件名
                     fname = node.getAttribute("fname");
-                    self.targetNode = node
+                    // 缓存点击（删除）事件目标对象所属的项目节点
+                    self.targetNodeBelongToItem = node
                 } else {
                     findParent(parent)
                 }
@@ -236,7 +236,7 @@
                 alert("请先设置请求接口！")
                 return
             }
-            if(!data) {
+            if (!data) {
                 data = null
             }
 
@@ -257,9 +257,9 @@
                             //将文件名记录在DOM节点上
                             self.recordFileName(result.data.fileNames)
                         } else {
-                            //删除图片请求处理成功，删除对应的DOM
-                            var parent = self.targetNode.parentNode
-                            parent.removeChild(self.targetNode)
+                            //删除图片请求处理成功，删除对应的项目节点
+                            var parent = self.targetNodeBelongToItem.parentNode
+                            parent.removeChild(self.targetNodeBelongToItem)
                         }
                     } else {
                         alert("请求失败")
