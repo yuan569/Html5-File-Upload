@@ -15,7 +15,7 @@ Ready to set File-Upload up on your page? Start by including the File-Upload Css
 
 2. Include the Css at the top of your page in your "head" tag:
 ```bash
-<link href="path/to/fileupload.css" rel="stylesheet" />
+<link href="path/to/dist/fileupload.css" rel="stylesheet" />
 ```
 
 3. Include the Html at the middle of your page in your "body" tag:
@@ -40,7 +40,7 @@ Ready to set File-Upload up on your page? Start by including the File-Upload Css
 
 4. Include the Javascript at the bottom of your page before the closing "body" tag: 
 ```bash
-<script src="path/to/fileupload.js"></script> 
+<script src="path/to/dist/fileupload.js"></script> 
 ```
 
 
