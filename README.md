@@ -9,7 +9,7 @@
 
 ## Getting Started
 
-Ready to set File_Upload up on your page? Start by including the File_Upload CSS and Javascript. You can grab both these files from the /dist folder. 
+Ready to set File-Upload up on your page? Start by including the File-Upload CSS and Javascript. You can grab both these files from the /dist folder. 
 
 1. Download a zip of the latest release (or any previous one) from the Github Releases page.
 
@@ -44,7 +44,7 @@ Ready to set File_Upload up on your page? Start by including the File_Upload CSS
 ```
 
 
-## Initialize with script:
+## Initialize with script
 ```bash
 <script>
 window.addEventListener("load", function() {
