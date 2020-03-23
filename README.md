@@ -1,13 +1,30 @@
-# Html5_File_Upload
-Html5_File_Upload is a plugin which is used to upload images in mobile.
-#EXAMPLES
-#GETTING STARTED
-Ready to set File_Upload up on your page? Start by including the File_Upload CSS and Javascript. You can grab both these files from the /dist folder.
-1.Include the CSS at the top of your page in your <head> tag:
+# File Upload
+
+## Preview
+
+
+
+
+
+
+## Getting Started
+
+Ready to set File_Upload up on your page? Start by including the File_Upload CSS and Javascript. You can grab both these files from the /dist folder. 
+
+1. Download a zip of the latest release (or any previous one) from the Github Releases page.
+
+2. Include the CSS at the top of your page in your "head" tag:
+```bash
 <link href="path/to/fileupload.css" rel="stylesheet" />
-2.Include the Javascript at the bottom of your page before the closing </body> tag:
-<script src="path/to/fileupload.js"></script>
-3.Initialize with html:
+```
+
+3. Include the Javascript at the bottom of your page before the closing "body" tag: 
+```bash
+<script src="path/to/fileupload.js"></script> 
+```
+
+4. Include the Html at the top of your page after the "body" tag:
+```bash
 <div class="upload-container">
     <div class="upload-title">请点击“+”按钮上传图片</div>
     <div class="upload-image-picker">
@@ -24,3 +41,20 @@ Ready to set File_Upload up on your page? Start by including the File_Upload CSS
 <div class="mask">
     <div class="loading"><div class="info"><div class="circle"></div>上传中...</div></div>
 </div>
+```
+
+
+## Initialize with script
+```bash
+<script>
+window.addEventListener("load", function() {
+    (function() {
+        var fileupload = new FileUpload({
+            compressPercent: 0.3, //压缩比例，最大为1
+            addItemApi: "http://127.0.0.1:8080/my-project/upload/file", //新增图片的接口
+            deleteItemApi: "http://127.0.0.1:8080/my-project/delete/file/" //删除图片的接口
+        });
+    })()
+})
+</script>
+```
