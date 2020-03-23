@@ -244,9 +244,9 @@
             xhr.open(method, url, true);
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4) {
+                    self.mask.style.display = "none"
+                    
                     if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
-                        self.mask.style.display = "none"
-
                         var result = JSON.parse(xhr.responseText);
                         alert(result.msg);
 
