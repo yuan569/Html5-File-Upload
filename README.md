@@ -1,15 +1,15 @@
-# File-Upload
-File-Upload is a plugin which is used to upload images in mobile.
+# Html5-File-Upload
+Html5-File-Upload is a plugin which is used to upload images in mobile.
 
 
 ## Preview
-![File-Upload](https://github.com/yuan569/Html5_File_Upload/blob/master/fileupload/dist/img/preview.jpg)
+![Html5-File-Upload](https://github.com/yuan569/Html5-File-Upload/blob/master/fileupload/dist/img/preview.jpg)
 
 
 
 ## Getting Started
 
-Ready to set File-Upload up on your page? Start by including the File-Upload Css, Html and Javascript. You can grab both these files from the /dist folder. 
+Ready to set Html5-File-Upload up on your page? Start by including the Html5-File-Upload Css, Html and Javascript. You can grab both these files from the /dist folder. 
 
 1. Download a zip of the latest release (or any previous one) from the Github Releases page.
 
@@ -48,13 +48,11 @@ Ready to set File-Upload up on your page? Start by including the File-Upload Css
 ```bash
 <script>
 window.addEventListener("load", function() {
-    (function() {
-        var fileupload = new FileUpload({
+    var fileupload = new FileUpload({
             compressPercent: 0.3, //压缩比例，最大为1
             addItemApi: "http://127.0.0.1:8080/my-project/upload/file", //新增图片的接口
             deleteItemApi: "http://127.0.0.1:8080/my-project/delete/file/" //删除图片的接口
         });
-    })()
 })
 </script>
 ```
