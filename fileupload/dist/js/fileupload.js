@@ -10,8 +10,8 @@
             deleteItemApi: "" //删除图片的接口
         }
 
-        // 扩展参数(浅拷贝)
-        var shallowCopy = function(target, src) {
+        // 扩展参数
+        var extendOptions = function(target, src) {
             for (var prop in src) {
                 if (src.hasOwnProperty(prop)) {
                     target[prop] = src[prop];
@@ -19,7 +19,7 @@
             }
             return target;
         }
-        shallowCopy(this.options, options || {})
+        extendOptions(this.options, options || {})
 
         //引用元素
         this.uploadFlexbox = document.querySelector(".upload-flexbox"); //图片要展示的项目容器
@@ -247,6 +247,8 @@
                     self.mask.style.display = "none"
                     
                     if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
+                        
+
                         var result = JSON.parse(xhr.responseText);
                         alert(result.msg);
 
