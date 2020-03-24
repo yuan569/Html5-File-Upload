@@ -20,7 +20,7 @@ Ready to set Html5-File-Upload up on your page? Start by including the Html5-Fil
 ```
 
 3. Include the Html at the middle of your page in your `<body>` tag:
-```bash
+```
 <div class="upload-container">
     <div class="upload-title">请点击“+”按钮上传图片</div>
     <div class="upload-image-picker">
