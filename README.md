@@ -49,10 +49,10 @@ Ready to set Html5-File-Upload up on your page? Start by including the Html5-Fil
 <script>
 window.addEventListener("load", function() {
     var fileupload = new FileUpload({
-            compressPercent: 0.3, //压缩比例，最大为1
-            addItemApi: "http://127.0.0.1:8080/my-project/upload/file", //新增图片的接口
-            deleteItemApi: "http://127.0.0.1:8080/my-project/delete/file/" //删除图片的接口
-        });
+        compressPercent: 0.3, //压缩比例，最大为1
+        addItemApi: "http://127.0.0.1:8080/my-project/upload/file", //新增图片的接口
+        deleteItemApi: "http://127.0.0.1:8080/my-project/delete/file/" //删除图片的接口
+    });
 })
 </script>
 ```
