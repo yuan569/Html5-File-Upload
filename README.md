@@ -2,6 +2,7 @@
 Html5-File-Upload is a plugin which is used to compress and upload images in mobile.
 
 
+
 ## Preview
 ![Html5-File-Upload](https://github.com/yuan569/Html5-File-Upload/blob/master/fileupload/dist/img/preview.jpg)
 
