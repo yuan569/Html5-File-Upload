@@ -15,7 +15,7 @@ Ready to set Html5-File-Upload up on your page? Start by including the Html5-Fil
 1. Download a zip of the latest release from the Github Releases page.
 
 2. Include the Css at the top of your page in your `<head>` tag:
-```bash
+```
 <link href="path/to/dist/fileupload.css" rel="stylesheet" />
 ```
 
@@ -40,13 +40,13 @@ Ready to set Html5-File-Upload up on your page? Start by including the Html5-Fil
 ```
 
 4. Include the Javascript at the bottom of your page before the closing `</body>` tag: 
-```bash
+```
 <script src="path/to/dist/fileupload.js"></script> 
 ```
 
 
 ## Initialize with script
-```bash
+```
 <script>
 window.addEventListener("load", function() {
     var fileupload = new FileUpload({
