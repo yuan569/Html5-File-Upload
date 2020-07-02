@@ -10,7 +10,7 @@ Html5-File-Upload is a plugin which is used to compress and upload images in mob
 
 ## Getting Started
 
-Ready to set Html5-File-Upload up on your page? Start by including the Html5-File-Upload Css, Html and Javascript. You can grab both these files from the `/dist` folder. 
+Ready to set Html5-File-Upload up on your page? Start by including the Html5-File-Upload css, html and javascript. You can grab both these files from the `/dist` folder. 
 
 1. Download a zip of the latest release from the Github Releases page.
 
